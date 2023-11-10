@@ -5,7 +5,7 @@ import {
   IsStrongPassword,
 } from 'class-validator';
 
-export abstract class UserDto {
+export class UserDto {
   @IsNotEmpty()
   @IsString()
   name: string;
@@ -13,6 +13,11 @@ export abstract class UserDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;
+
+  
+  @IsNotEmpty()
+  @IsString() 
+  role: string;
 
   @IsNotEmpty()
   @IsStrongPassword()

@@ -8,11 +8,11 @@ import {
   Body,
   ParseUUIDPipe,
 } from '@nestjs/common';
-import { UserDto } from 'src/business/dtos/user.dto';
-import { UserEntity } from 'src/business/entities/user.entity';
-import { UserService } from 'src/data/services/user.service';
+import { UserDto } from '../../business/dtos/user.dto';
+import { UserEntity } from '../../business/entities/user.entity';
+import { UserService } from '../../data/services/user.service';
 
-@Controller('/api/v1')
+@Controller()
 export class UserController {
   constructor(private readonly service: UserService) {}
 
@@ -33,15 +33,18 @@ export class UserController {
     return await this.service.findUserById(id);
   }
 
-  @Put('/user')
-  async updateUser(@Body() dto: UserDto): Promise<UserEntity> {
-    return await this.service.updateUser(dto);
+  @Put('/user/:id')
+  async updateUser(
+    @Body() dto: UserDto,
+    @Param('id', new ParseUUIDPipe()) id: string,
+  ): Promise<UserEntity> {
+    return await this.service.updateUser(dto, id);
   }
 
-  @Delete('/user')
+  @Delete('/user/:id')
   async deleteUser(
     @Param('id', new ParseUUIDPipe()) id: string,
-  ): Promise<boolean> {
+  ): Promise<object> {
     return await this.service.deleteUser(id);
   }
 }

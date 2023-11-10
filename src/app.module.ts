@@ -1,7 +1,8 @@
+// app/app.module.ts
 import { Module } from '@nestjs/common';
-import { UserController } from './controllers/user.controller';
-import { UserService } from './data/services/user.service';
 import { DataModule } from './data/data.module';
+import { UserController } from './api/controllers/user.controller';
+import { UserService } from './data/services/user.service';
 
 @Module({
   imports: [DataModule],

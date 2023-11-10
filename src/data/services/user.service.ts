@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserDto } from 'src/business/dtos/user.dto';
 import { UserEntity } from 'src/business/entities/user.entity';
-import { IUserService } from 'src/business/services/user.impl.service';
+import { IUserService } from '../../business/services/user.impl.service';
 import { UserRepository } from '../repositories/user.repository';
 
 @Injectable()
@@ -19,10 +19,10 @@ export class UserService extends IUserService<UserEntity> {
   async findUserById(id: string): Promise<UserEntity> {
     return await this.repository.findById(id);
   }
-  async updateUser(dto: UserDto): Promise<UserEntity> {
-    return await this.repository.update(dto);
+  async updateUser(dto: UserDto, id: string): Promise<UserEntity> {
+    return await this.repository.update(dto, id);
   }
-  async deleteUser(id: string): Promise<boolean> {
+  async deleteUser(id: string): Promise<object>{
     return await this.repository.delete(id);
   }
 }

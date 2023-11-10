@@ -7,7 +7,7 @@ export abstract class IRepository<T> {
   
     abstract findById(id: string): Promise<T | null>;
   
-    abstract update(dto: UserDto): Promise<T>;
+    abstract update(dto: UserDto, id: string): Promise<T>;
   
-    abstract delete(id: string): Promise<boolean>;
+    abstract delete(id: string):Promise<object>;
   }

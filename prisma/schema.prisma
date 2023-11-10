@@ -1,9 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
+
 
 datasource db {
   provider = "postgresql"
@@ -11,11 +9,84 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   name      String
-  email     String   @unique
-  password  String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  deletedAt DateTime
+  role      String
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model Supplier {
+  id                  String        @id @default(uuid())
+  supplier_name       String
+  cnpj                String
+  email_responsible   String
+  celular_responsible String
+  name_responsible    String
+  rate                Int
+  transporters        Transporter[]
+  rankings            Ranking[]
+  orders              Order[]
+}
+
+model Transporter {
+  id                String   @id @default(uuid())
+  supplier_id       String
+  supplier          Supplier @relation(fields: [supplier_id], references: [id])
+  name              String
+  deliveryman_name  String
+  deliveryman_phone String
+  orders            Order[]
+}
+
+model EmployeSchool {
+  id               String      @id @default(uuid())
+  school_id        String      @unique
+  school           School      @relation(fields: [school_id], references: [id])
+  name_responsible String
+  cpf_responsible  String
+  assessments      Assesment[]
+  orders           Order[]
+}
+
+model School {
+  id      String         @id @default(uuid())
+  name    String
+  address String
+  cep     String
+  employe EmployeSchool?
+}
+
+model Assesment {
+  id                String        @id @default(uuid())
+  order_id          String
+  employe_school_id String
+  shipment_date     DateTime
+  order             Order         @relation(fields: [order_id], references: [id])
+  employeSchool     EmployeSchool @relation(fields: [employe_school_id], references: [id])
+}
+
+model Order {
+  id                String        @id @default(uuid())
+  supplier_id       String
+  employe_seduc_id  String
+  transporter_id    String
+  employe_school_id String
+  nf                String
+  nr                String
+  shipment_date     DateTime
+  status            String
+  supplier          Supplier      @relation(fields: [supplier_id], references: [id])
+  employeSchool     EmployeSchool @relation(fields: [employe_school_id], references: [id])
+  transporter       Transporter   @relation(fields: [transporter_id], references: [id])
+  assessment        Assesment[]
+}
+
+model Ranking {
+  id               String   @id @default(uuid())
+  best_supplier    Supplier @relation(fields: [best_supplier_id], references: [id])
+  best_supplier_id String
 }

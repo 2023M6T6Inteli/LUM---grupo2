@@ -7,7 +7,7 @@ export abstract class IUserService<T> {
   
     abstract findUserById(id: string): Promise<T | null>;
   
-    abstract updateUser(dto: UserDto): Promise<T>;
+    abstract updateUser(dto: UserDto, id: string): Promise<T>;
   
-    abstract deleteUser(id: string): Promise<boolean>;
+    abstract deleteUser(id: string): Promise<object>;
   }

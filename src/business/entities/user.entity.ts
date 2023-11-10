@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { User } from '@prisma/client';
 import {
   IsDateString,
   IsEmail,
@@ -8,7 +8,7 @@ import {
   IsUUID,
 } from 'class-validator';
 
-export abstract class UserEntity extends PrismaClient {
+export class UserEntity implements User {
   @IsNotEmpty()
   @IsString()
   @IsUUID()
@@ -17,6 +17,10 @@ export abstract class UserEntity extends PrismaClient {
   @IsNotEmpty()
   @IsString()
   name: string;
+
+  @IsNotEmpty()
+  @IsString()
+  role: string;
 
   @IsNotEmpty()
   @IsEmail()
@@ -37,4 +41,6 @@ export abstract class UserEntity extends PrismaClient {
   @IsNotEmpty()
   @IsDateString()
   deletedAt: Date;
+
+
 }
