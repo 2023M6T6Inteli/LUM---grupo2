@@ -25,7 +25,7 @@ async function bootstrap() {
   SwaggerModule.setup('swagger', app, document);
   await app.listen(port);
 
-  console.log(`Aplicação rodando na porta ${port}`);
+  console.log(`Aplicação rodando em => http://localhost:${port}`);
 }
 
 bootstrap();
