@@ -5,6 +5,8 @@ import { UserController } from './api/controllers/user.controller';
 import { UserService } from './data/services/user.service';
 import { AuthModule } from './api/auth/auth.module';
 
+
+// módulo que junta todos os submódulos da aplicação e os inicia
 @Module({
   imports: [DataModule, AuthModule],
   controllers: [UserController],

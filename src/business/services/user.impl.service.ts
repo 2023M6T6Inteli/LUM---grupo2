@@ -1,5 +1,7 @@
 import { UserDto } from "../dtos/user.dto";
 
+
+// serviços de abstraçõa para usuários
 export abstract class IUserService<T> {
     abstract createUser(dto: UserDto): Promise<T>;
   

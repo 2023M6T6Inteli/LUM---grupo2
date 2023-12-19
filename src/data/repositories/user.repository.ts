@@ -4,6 +4,8 @@
   import { IRepository } from '../../business/repository.impl';
   import { Injectable } from '@nestjs/common';
 
+
+  // implementação do repositório de usuário
   @Injectable()
   export class UserRepository extends IRepository<UserEntity> {
     constructor(private readonly prisma: PrismaService) {

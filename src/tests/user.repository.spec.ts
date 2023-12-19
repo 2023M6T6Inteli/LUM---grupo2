@@ -5,6 +5,7 @@ import { PrismaService } from '../data/prisma.service';
 import { UserRepository } from '../data/repositories/user.repository';
 import * as uuid from 'uuid';
 
+// testes unitários com a camada base (repositório)
 describe('UserRepository', () => {
   let userRepository: UserRepository;
   let prismaService: PrismaService;

@@ -2,6 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { GoogleStrategy } from './google.strategy';
 
+// classe que retorna o usuário autenticado
 @Injectable()
 export class AuthService {
   constructor(private readonly googleStrategy: GoogleStrategy) {}

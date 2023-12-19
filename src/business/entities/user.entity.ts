@@ -8,6 +8,8 @@ import {
   IsUUID,
 } from 'class-validator';
 
+
+// entidade usuário e seus validadores
 export class UserEntity implements User {
   @IsNotEmpty()
   @IsString()

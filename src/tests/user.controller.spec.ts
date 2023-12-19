@@ -10,6 +10,8 @@ import * as uuid from 'uuid';
 jest.mock('../data/services/user.service');
 jest.mock('../data/prisma.service');
 
+
+// testes de integração da camada de usuário mockado
 describe('UserController (e2e)', () => {
     let app: INestApplication;
     let userServiceMock: jest.Mocked<UserService>;

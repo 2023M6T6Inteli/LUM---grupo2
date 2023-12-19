@@ -13,9 +13,13 @@ import { UserEntity } from '../../business/entities/user.entity';
 import { UserService } from '../../data/services/user.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+
+// classe de controller para endpoints de usuário
 @ApiTags('users')
 @Controller()
 export class UserController {
+
+  // injeção de dependência com serviços de usuário
   constructor(private readonly service: UserService) {}
 
   @ApiOperation({ summary: 'Create a new user' })

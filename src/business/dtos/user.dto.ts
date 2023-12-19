@@ -6,6 +6,8 @@ import {
   IsStrongPassword,
 } from 'class-validator';
 
+
+// DTO para modificar a entitidade usuário
 export class UserDto {
   @ApiProperty({
     description: "user name",
